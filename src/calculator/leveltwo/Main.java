@@ -1,4 +1,4 @@
-package calculator.levelone;
+package calculator.leveltwo;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -100,4 +100,3 @@ public class Main {
         scn.close();
     }
 }
-
