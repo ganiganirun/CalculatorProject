@@ -1,4 +1,4 @@
-package calculator.leveltwo;
+package calculator;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -15,39 +15,28 @@ public class Main {
 
             // 정수형이 아닌 것을 입력받을 시 발생하는 오류 예외 처리
             while (true) {
-//                 // 무한루프 나가기 시도 2
-//                for(int i = 0; i < numArr.length; i++){
-//                    numArr[i] = 0;
-//                }
-
                 try {
                     System.out.print("양의 정수를 두개 입력하시오. ");
 
                     for (int i = 0; i < numArr.length; i++) {
                         numArr[i] = scn.nextInt();
-
-//                        //무한루프 나가기 시도 1
-//                        int a = scn.nextInt();
-//                        numArr[i] = a;
                     }
                     break;
                 }catch (InputMismatchException e){
                     System.out.println("양의 정수 이외의 값은 입력할 수 없습니다.");
 
-                    // while을 통해서 예외 발생시 반복할 때 scanner를 초기화 시켜줘야 무한루프가 안돌아감
-                    // 블로그 정보 참고
-//                    scn = new Scanner(System.in); // 얘로 해도 무한루프 탈출 가능함
-                    scn.nextLine(); // 애로 해도 무한루프 탈출 가능함 -> 근데 얘가 더 효율적
+                    // while을 통해서 예외 발생시 반복할 때 scanner를 초기화 시켜줘야 무한루프 빠져나옴
+                    scn.nextLine();
                 }
             }
 
-            scn.nextLine(); // 버퍼비우기
+            scn.nextLine();
 
             // 사칙연산 기호 입력 받기
             System.out.print("+,-,*,/ 중 하나를 입력하시오.");
             char oper = scn.next().charAt(0);
 
-            scn.nextLine(); // 버퍼비우기
+            scn.nextLine();
 
 
             switch (oper){
@@ -66,13 +55,12 @@ public class Main {
                 case '/':
                     // 0으로 나누려고 할 경우 오류 예외 처리
                     try{
-                        // 나누기의 경우 실수가 나올 수 있기 때문에 자료형을 double로 업캐스팅 해준다.
+                        // 나누기의 경우 실수가 나올 수 있기 때문에 자료형을 double로 업캐스팅
                         double num1 = numArr[0];
                         double num2 = numArr[1];
                         double result1 = num1 / num2;
 
-                        // 실수의 나눗셈은 0으로 나눌 시 infinity 또는 nan값이 나오기 때문에 일부러 예외를 발생시켜 예외처리를 해준다.
-                        // 블로그 정보 참고
+                        // 실수의 나눗셈 0으로 나눌 시 infinity 또는 nan값이 나와 일부러 예외를 발생시켜 예외처리
                         if(Double.isInfinite(result1) || Double.isNaN(result1)){
                             throw new ArithmeticException();
                         }
@@ -100,3 +88,4 @@ public class Main {
         scn.close();
     }
 }
+
