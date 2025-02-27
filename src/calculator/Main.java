@@ -1,4 +1,4 @@
-package calculator.leveltwo;
+package calculator;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
