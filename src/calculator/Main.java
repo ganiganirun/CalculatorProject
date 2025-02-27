@@ -52,8 +52,6 @@ public class Main {
 
             calculator.calculator(numArr[0],numArr[1],oper);
 
-            System.out.println(calculator.getResultList(0));
-
             // while 문 종료 조건 부분
             // ex의 값이 exit와 같으면 flag의 값을 false로 변경하여 while문 종료.
             System.out.print("졸료를 원할 시 exit를 입력하시오. 아닐 시 enter를 누르시오.");
