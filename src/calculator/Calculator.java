@@ -9,7 +9,7 @@ public class Calculator {
 //    char oper;
     double result;
     // 어느 객체든 저장할 수 있는 ArrayList가 되어 버린다.
-    List list = new ArrayList();
+    private List resultList = new ArrayList();
     IO io = new IO();
 
 
@@ -25,8 +25,7 @@ public class Calculator {
             default -> -1;
         };
         io.printResult(num1,num2,oper,result);
-
-
+        setResultList(result,oper);
     }
 
     private double sum(double num1, double num2){
@@ -48,6 +47,19 @@ public class Calculator {
         result = num1 / num2;
         return result;
     }
+    void setResultList(double result, char oper){
+        if (oper == '+' || oper == '-'||oper == '*'){
+            resultList.add((int)result);
+        }else {
+            resultList.add(result);
+
+        }
+    }
+
+    String getResultList(int idx){
+        return resultList.get(idx).toString();
+    }
+
 
 
 

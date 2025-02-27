@@ -8,10 +8,11 @@ public class Main {
         Scanner scn = new Scanner(System.in);
         // while 종료 조건 변수
         boolean flag = true;
+        Calculator calculator = new Calculator();
 
         while (flag){
-            int[] numArr = new int[2];
-            int result = 0;
+            double [] numArr = new double[2];
+            double result = 0;
 
             // 정수형이 아닌 것을 입력받을 시 발생하는 오류 예외 처리
             while (true) {
@@ -49,44 +50,10 @@ public class Main {
 
             scn.nextLine(); // 버퍼비우기
 
+            calculator.calculator(numArr[0],numArr[1],oper);
 
-            switch (oper){
-                case '+':
-                    result = numArr[0] + numArr[1];
-                    System.out.println(numArr[0] + " + " + numArr[1] + " = " + result);
-                    break;
-                case '-':
-                    result = numArr[0] - numArr[1];
-                    System.out.println(numArr[0] + " - " + numArr[1] + " = " + result);
-                    break;
-                case '*':
-                    result = numArr[0] * numArr[1];
-                    System.out.println(numArr[0] + " * " + numArr[1] + " = " + result);
-                    break;
-                case '/':
-                    // 0으로 나누려고 할 경우 오류 예외 처리
-                    try{
-                        // 나누기의 경우 실수가 나올 수 있기 때문에 자료형을 double로 업캐스팅 해준다.
-                        double num1 = numArr[0];
-                        double num2 = numArr[1];
-                        double result1 = num1 / num2;
+            System.out.println(calculator.getResultList(0));
 
-                        // 실수의 나눗셈은 0으로 나눌 시 infinity 또는 nan값이 나오기 때문에 일부러 예외를 발생시켜 예외처리를 해준다.
-                        // 블로그 정보 참고
-                        if(Double.isInfinite(result1) || Double.isNaN(result1)){
-                            throw new ArithmeticException();
-                        }
-                        System.out.println(numArr[0] + " / " + numArr[1] + " = " + result1);
-                        break;
-                    } catch (ArithmeticException e){
-                        System.out.println("0으로 나눌 수 없습니다.");
-                        break;
-                    }
-                default:
-                    System.out.println("해당 연산은 본 계산기에 포함 되어 있지 않습니다.");
-
-
-            }
             // while 문 종료 조건 부분
             // ex의 값이 exit와 같으면 flag의 값을 false로 변경하여 while문 종료.
             System.out.print("졸료를 원할 시 exit를 입력하시오. 아닐 시 enter를 누르시오.");
