@@ -7,8 +7,7 @@ public class IO {
         if (oper == '+' || oper == '-'||oper == '*'){
             System.out.println((int)num1 + " " + oper + " " + (int)num2 + " = " + (int)result);
         } else if (result == -1) {
-
-
+            System.out.println("해당 연산은 본 계산기에 포함 되어 있지 않습니다.");
         } else{
             System.out.println((int)num1 + " " + oper + " " + (int)num2 + " = " + result);
         }

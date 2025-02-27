@@ -25,7 +25,9 @@ public class Calculator {
             default -> -1;
         };
         io.printResult(num1,num2,oper,result);
-        setResultList(result,oper);
+        if (result != -1) {
+            setResultList(result,oper);
+        }
     }
 
     private double sum(double num1, double num2){
@@ -47,6 +49,7 @@ public class Calculator {
         result = num1 / num2;
         return result;
     }
+
     void setResultList(double result, char oper){
         if (oper == '+' || oper == '-'||oper == '*'){
             resultList.add((int)result);
