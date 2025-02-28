@@ -9,10 +9,10 @@ public class Calculator {
     private List resultList = new ArrayList();
     Excep excep = new Excep();
 
-    private final IO io;
+    private final Io io;
     // 메서드 주입(선택적 의존성)
     public Calculator() {
-        this.io = new IO(this);
+        this.io = new Io(this);
     }
 
     public boolean calculatorMenu(int menu, boolean flag ){

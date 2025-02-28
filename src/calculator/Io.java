@@ -3,12 +3,12 @@ package calculator;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class IO {
+public class Io {
     Scanner scn = new Scanner(System.in);
 
     private final Calculator calculator;
     // 생성자 주입(필수 의존성)
-    public IO(Calculator calculator) {
+    public Io(Calculator calculator) {
         this.calculator = calculator;
     }
 
