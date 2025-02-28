@@ -6,38 +6,16 @@ import java.util.List;
 public class Calculator {
     double result;
     public double [] numArr = new double[2];
-    // 어느 객체든 저장할 수 있는 ArrayList가 되어 버린다.
     private List resultList = new ArrayList();
-    //IO io = new IO();
     Excep excep = new Excep();
-    private IO io;
 
+    private final IO io;
+    // 메서드 주입(선택적 의존성)
     public Calculator() {
-        this.io = new IO(this); // `this`를 넘겨서 IO가 현재 Calculator를 참조하도록 함
+        this.io = new IO(this);
     }
 
-    public void calculator(double num1, double num2, char oper) {
-        result = switch(oper) {
-            case '+'-> sum(num1,num2);
-            case '-' -> sub(num1,num2);
-            case '*' -> mul(num1,num2);
-            case '/' -> {
-                if(num2 == 0){
-                    excep.callUncheckedException();
-                    yield -2;
-                }else{
-                    yield div(num1,num2);
-                }
-            }
-            default -> -1;
-        };
-        io.printResult(num1,num2,oper,result);
-        if (result != -1 && result != -2) {
-            setResultList(result,oper);
-        }
-    }
-
-    public boolean calculatorMenu(int menu, boolean flag){
+    public boolean calculatorMenu(int menu, boolean flag ){
         flag =  switch (menu) {
             case 1 -> {
                 io.inputNumArr(numArr);
@@ -57,27 +35,28 @@ public class Calculator {
                 yield true;
             }
         };
-    return flag;
+        return flag;
     }
 
-    private double sum(double num1, double num2){
-        result = num1 + num2;
-        return result;
-    }
-
-    private double sub (double num1, double num2){
-        result = num1 - num2;
-        return result;
-    }
-
-    private double mul(double num1, double num2){
-        result = num1 * num2;
-        return result;
-    }
-
-    private double div(double num1, double num2){
-        result = num1 / num2;
-        return result;
+    public void calculator(double num1, double num2, char oper) {
+        result = switch(oper) {
+            case '+'-> num1 + num2;
+            case '-' -> num1 - num2;
+            case '*' -> num1 * num2;
+            case '/' -> {
+                if(num2 == 0){
+                    excep.callUncheckedException();
+                    yield -2;
+                }else{
+                    yield num1 / num2;
+                }
+            }
+            default -> -1;
+        };
+        io.printResult(num1,num2,oper,result);
+        if (result != -1 && result != -2) {
+            setResultList(result,oper);
+        }
     }
 
     void setResultList(double result, char oper){
