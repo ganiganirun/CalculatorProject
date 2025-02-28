@@ -5,10 +5,16 @@ import java.util.List;
 
 public class Calculator {
     double result;
+    public double [] numArr = new double[2];
     // 어느 객체든 저장할 수 있는 ArrayList가 되어 버린다.
     private List resultList = new ArrayList();
-    IO io = new IO();
+    //IO io = new IO();
     Excep excep = new Excep();
+    private IO io;
+
+    public Calculator() {
+        this.io = new IO(this); // `this`를 넘겨서 IO가 현재 Calculator를 참조하도록 함
+    }
 
     public void calculator(double num1, double num2, char oper) {
         result = switch(oper) {
@@ -26,9 +32,32 @@ public class Calculator {
             default -> -1;
         };
         io.printResult(num1,num2,oper,result);
-        if (result != -1 || result != -2) {
+        if (result != -1 && result != -2) {
             setResultList(result,oper);
         }
+    }
+
+    public boolean calculatorMenu(int menu, boolean flag){
+        flag =  switch (menu) {
+            case 1 -> {
+                io.inputNumArr(numArr);
+                yield true;
+            }
+            case 2 -> {
+                io.seeResultList();
+                yield true;
+            }
+            case 3 -> {
+                io.remoResultList();
+                yield true;
+            }
+            case 4 -> io.exitCalculator(flag);
+            default -> {
+                System.out.println("다시 입력해주세요.");
+                yield true;
+            }
+        };
+    return flag;
     }
 
     private double sum(double num1, double num2){
@@ -62,6 +91,10 @@ public class Calculator {
 
     String getResultList(int idx){
         return resultList.get(idx).toString();
+    }
+
+    void removeResultList(int idx){
+        resultList.remove(idx);
     }
 
 

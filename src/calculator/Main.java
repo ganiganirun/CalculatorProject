@@ -8,17 +8,10 @@ public class Main {
         // while 종료 조건 변수
         boolean flag = true;
         Calculator calculator = new Calculator();
-        IO io = new IO();
+        IO io = new IO(calculator);
 
         while (flag){
-            double [] numArr = new double[2];
-            double result = 0;
-
-            numArr = io.inputNumArr(numArr);
-            char oper = io.inputOper();
-            calculator.calculator(numArr[0],numArr[1],oper);
-            flag = io.exitCalculator(flag);
-
+            flag = io.inputMenu(flag);
         }
         System.out.println("계산기를 종료합니다.");
 
