@@ -20,3 +20,4 @@
     - 저장된 연산 결과들 중 가장 먼저 저장된 데이터를 삭제하는 기능을 가진 메서드를 구현하도록 한다.
 
 3. 설계
+![level2설계](https://github.com/user-attachments/assets/101371e2-7c63-42cc-8a6a-22a72854c465)
