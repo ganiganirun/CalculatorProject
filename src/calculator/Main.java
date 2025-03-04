@@ -5,7 +5,7 @@ public class Main {
         // while 종료 조건 변수
         boolean flag = true;
         Calculator calculator = new Calculator();
-        Io io = new Io(calculator);
+        InputManager io = new InputManager(calculator);
 
         while (flag){
 

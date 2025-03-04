@@ -3,12 +3,12 @@ package calculator;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Io {
+public class InputManager {
     Scanner scn = new Scanner(System.in);
 
     private final Calculator calculator;
     // 생성자 주입(필수 의존성)
-    public Io(Calculator calculator) {
+    public InputManager(Calculator calculator) {
         this.calculator = calculator;
     }
 
@@ -50,18 +50,7 @@ public class Io {
         calculator.calculator(numArr[0],numArr[1],oper);
     }
 
-    public void printResult(double num1, double num2, char oper, double result){
-        if (oper == '+' || oper == '-'||oper == '*'){
-            System.out.println((int)num1 + " " + oper + " " + (int)num2 + " = " + (int)result);
-        } else if (result == -1) {
-            System.out.println("해당 연산은 본 계산기에 포함 되어 있지 않습니다.");
-        } else if (result == -2) {
-            System.out.println("0으로 나눌 수 없습니다.");
-        } else{
-            System.out.println((int)num1 + " " + oper + " " + (int)num2 + " = " + result);
-        }
 
-    }
 
     public void seeResultList(){
         System.out.println("몇 번째 연산 결과를 보시겠습니까? :");

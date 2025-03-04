@@ -7,36 +7,13 @@ public class Calculator {
     double result;
     public double [] numArr = new double[2];
     private List resultList = new ArrayList();
-    Excep excep = new Excep();
 
-    private final Io io;
+    private final InputManager io;
     // 메서드 주입(선택적 의존성)
     public Calculator() {
-        this.io = new Io(this);
+        this.io = new InputManager(this);
     }
 
-    public boolean calculatorMenu(int menu, boolean flag ){
-        flag =  switch (menu) {
-            case 1 -> {
-                io.inputNumArr(numArr);
-                yield true;
-            }
-            case 2 -> {
-                io.seeResultList();
-                yield true;
-            }
-            case 3 -> {
-                io.remoResultList();
-                yield true;
-            }
-            case 4 -> io.exitCalculator(flag);
-            default -> {
-                System.out.println("다시 입력해주세요.");
-                yield true;
-            }
-        };
-        return flag;
-    }
 
     public void calculator(double num1, double num2, char oper) {
         result = switch(oper) {
@@ -45,8 +22,11 @@ public class Calculator {
             case '*' -> num1 * num2;
             case '/' -> {
                 if(num2 == 0){
-                    excep.callUncheckedException();
-                    yield -2;
+                    try {
+                        throw new ArithmeticException(); // ✅ 예외발생
+                    } catch (ArithmeticException e) {
+                        yield -2;
+                    }
                 }else{
                     yield num1 / num2;
                 }
