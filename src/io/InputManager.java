@@ -27,7 +27,7 @@ public class InputManager {
                     numArr[i] = scn.nextInt();
                 }
                 scn.nextLine();
-                inputOper(numArr);
+                inputOperator(numArr);
                 break;
             }catch (InputMismatchException e){
                 System.out.println("양의 정수 이외의 값은 입력할 수 없습니다.");
@@ -36,21 +36,21 @@ public class InputManager {
         }
     }
 
-    public void inputOper(double[] numArr){
+    public void inputOperator(double[] numArr){
         System.out.print("+,-,*,/ 중 하나를 입력하시오.");
         char oper = scn.next().charAt(0);
         scn.nextLine(); // 버퍼비우기
         calculator.calculator(numArr[0],numArr[1],oper);
     }
 
-    public void seeResultList(){
+    public void viewResultList(){
         System.out.println("몇 번째 연산 결과를 보시겠습니까? :");
         int idx = scn.nextInt();
         scn.nextLine();
         System.out.println(calculator.getResultList(idx-1));
     }
 
-    public void remoResultList(){
+    public void deleteResultList(){
         System.out.println("몇 번째 연산 결과를 삭제하시겠습니까?");
         int idx = scn.nextInt();
         scn.nextLine();

@@ -15,12 +15,23 @@ public class HandleMenu {
                 yield true;
             }
             case 2 -> {
-                inputManager.seeResultList();
-                yield true;
+                try {
+                    inputManager.viewResultList();
+                    yield true;
+                }catch (IndexOutOfBoundsException ex){
+                    System.out.println("찾으시는 인덱스는 존재하지 않습니다.");
+                    yield true;
+                }
+
             }
             case 3 -> {
-                inputManager.remoResultList();
-                yield true;
+                try {
+                    inputManager.deleteResultList();
+                    yield true;
+                }catch (IndexOutOfBoundsException ex){
+                    System.out.println("찾으시는 인덱스는 존재하지 않습니다.");
+                    yield true;
+                }
             }
             case 4 -> inputManager.exitCalculator(flag);
             default -> {
