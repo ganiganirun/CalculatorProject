@@ -1,19 +1,16 @@
 package calculator;
 
+import io.OutputManager;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Calculator {
     double result;
-    public double [] numArr = new double[2];
+
     private List resultList = new ArrayList();
 
-    private final InputManager io;
-    // 메서드 주입(선택적 의존성)
-    public Calculator() {
-        this.io = new InputManager(this);
-    }
-
+    OutputManager outputManager = new OutputManager();
 
     public void calculator(double num1, double num2, char oper) {
         result = switch(oper) {
@@ -33,7 +30,7 @@ public class Calculator {
             }
             default -> -1;
         };
-        io.printResult(num1,num2,oper,result);
+        outputManager.printResult(num1,num2,oper,result);
         if (result != -1 && result != -2) {
             setResultList(result,oper);
         }
@@ -48,18 +45,11 @@ public class Calculator {
         }
     }
 
-    String getResultList(int idx){
+    public String getResultList(int idx){
         return resultList.get(idx).toString();
     }
 
-    void removeResultList(int idx){
+    public void removeResultList(int idx){
         resultList.remove(idx);
     }
-
-
-
-
-
-
-
 }

@@ -1,6 +1,7 @@
-package calculator;
+package io;
 
 public class OutputManager {
+
     public void printResult(double num1, double num2, char oper, double result){
         if (oper == '+' || oper == '-'||oper == '*'){
             System.out.println((int)num1 + " " + oper + " " + (int)num2 + " = " + (int)result);

@@ -1,4 +1,6 @@
-package calculator;
+package io;
+
+import calculator.Calculator;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -6,23 +8,14 @@ import java.util.Scanner;
 public class InputManager {
     Scanner scn = new Scanner(System.in);
 
-    private final Calculator calculator;
-    // 생성자 주입(필수 의존성)
-    public InputManager(Calculator calculator) {
-        this.calculator = calculator;
-    }
+    Calculator calculator = new Calculator();
 
-    public boolean inputMenu(boolean flag){
-        try {
-            System.out.println("원하시는 메뉴의 번호를 입력해주세요.\n1: 연산하기 2: 기록보기 3: 기록삭제하기 4: 계산기 종료");
-            int idx = scn.nextInt();
-            scn.nextLine();
-            flag = calculator.calculatorMenu(idx,flag);
-        }catch (IndexOutOfBoundsException e){
-            System.out.println("찾으시는 인덱스의 연산결과는 존재하지 않습니다.");
-        }
+    public int inputMenu(){
+        System.out.println("원하시는 메뉴의 번호를 입력해주세요.\n1: 연산하기 2: 기록보기 3: 기록삭제하기 4: 계산기 종료");
+        int idx = scn.nextInt();
+        scn.nextLine();
 
-        return flag;
+        return idx;
     }
 
     public void inputNumArr(double[] numArr){
@@ -50,8 +43,6 @@ public class InputManager {
         calculator.calculator(numArr[0],numArr[1],oper);
     }
 
-
-
     public void seeResultList(){
         System.out.println("몇 번째 연산 결과를 보시겠습니까? :");
         int idx = scn.nextInt();
@@ -76,8 +67,4 @@ public class InputManager {
         }
         return flag;
     }
-
-
-
-
 }
